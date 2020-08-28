@@ -18,19 +18,19 @@
          </Menu>
 
          <Menu text="Edit">
-            <MenuItem text="Undo" fx:id="undoMenu"/>
-            <MenuItem text="Redo" fx:id="redoMenu"/>
+            <MenuItem text="Undo" fx:id="undoMenu" onAction="#undoAction"/>
+            <MenuItem text="Redo" fx:id="redoMenu" onAction="#redoAction"/>
             <SeparatorMenuItem/>
-            <MenuItem text="Cut" fx:id="cutMenu"/>
-            <MenuItem text="Paste" fx:id="pasteMenu"/>
-            <MenuItem text="Copy" fx:id="copyMenu"/>
-            <MenuItem text="Delete" fx:id="deleteMenu"/>
+            <MenuItem text="Cut" fx:id="cutMenu" onAction="#cutAction"/>
+            <MenuItem text="Paste" fx:id="pasteMenu" onAction="#pasteAction"/>
+            <MenuItem text="Copy" fx:id="copyMenu" onAction="#copyAction"/>
+            <MenuItem text="Delete" fx:id="deleteMenu" onAction="#deleteAction"/>
             <SeparatorMenuItem/>
-            <MenuItem text="Find" fx:id="findMenu"/>
-            <MenuItem text="Replace" fx:id="replaceMenu"/>
-            <MenuItem text="Go To" fx:id="goToMenu"/> <!-- This menu is enabled only when word wrap is disabled-->
+            <MenuItem text="Find" fx:id="findMenu" onAction="#findAction"/>
+            <MenuItem text="Replace" fx:id="replaceMenu" onAction="#replaceAction"/>
+            <MenuItem text="Go To" fx:id="goToMenu" onAction="#gotoAction"/> <!-- This menu is enabled only when word wrap is disabled-->
             <SeparatorMenuItem/>
-            <MenuItem text="Select All" fx:id="selectAllMenu"/>
+            <MenuItem text="Select All" fx:id="selectAllMenu" onAction="#selectAllAction"/>
          </Menu>
 
          <Menu text="Format">

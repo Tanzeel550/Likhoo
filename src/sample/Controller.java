@@ -102,4 +102,43 @@ public class Controller {
         isSaved = false;
     }
 
+    public void undoAction() {
+        textarea.undo();
+    }
+
+    public void redoAction() {
+        textarea.redo();
+    }
+
+    public void cutAction() {
+        textarea.cut();
+    }
+
+    public void pasteAction() {
+        textarea.paste();
+    }
+
+    public void copyAction() {
+        textarea.copy();
+    }
+
+    public void deleteAction() {
+        textarea.deleteNextChar();
+    }
+
+    public void findAction() {
+        // Open up the dialog for finding.
+
+    }
+
+    public void replaceAction() {
+        // open up the dialog for both finding and replacing
+    }
+
+    public void gotoAction() {
+    }
+
+    public void selectAllAction() {
+        textarea.selectAll();
+    }
 }
