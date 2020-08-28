@@ -4,6 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 
+<?import javafx.scene.input.KeyCodeCombination?>
 <BorderPane fx:controller="sample.Controller" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
             prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:id="borderPane">
    <top>
@@ -34,12 +35,12 @@
          </Menu>
 
          <Menu text="Format">
-            <MenuItem text="Word Wrap" fx:id="wordWrapMenu"/>
-            <MenuItem text="Font" fx:id="fontMenu"/>
+            <MenuItem text="Word Wrap" fx:id="wordWrapMenu" onAction="#wordWrapAction"/>
+            <MenuItem text="Font" fx:id="fontMenu" onAction="#fontAction"/>
          </Menu>
 
          <Menu text="View">
-            <MenuItem text="Status Bar" fx:id="statusBarMenu"/>
+            <MenuItem text="Status Bar" fx:id="statusBarMenu" onAction="#statusBarAction"/>
          </Menu>
 
          <Menu text="Help" >
@@ -52,4 +53,10 @@
    <center>
       <TextArea fx:id="textarea" BorderPane.alignment="CENTER" onInputMethodTextChanged="#textAreaTextChanged"/>
    </center>
+
+
+   <bottom>
+      <Label fx:id="statusLabel" visible="false"/>
+   </bottom>
+
 </BorderPane>
