@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="JavaFX" level="application" />
     <orderEntry type="library" name="sqlite-jdbc-3.15.1" level="application" />
+    <orderEntry type="library" name="JavaFX" level="application" />
   </component>
 </module>

@@ -4,7 +4,6 @@
 <?import javafx.scene.layout.*?>
 
 
-<?import javafx.scene.input.KeyCodeCombination?>
 <BorderPane fx:controller="sample.Controller" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
             prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:id="borderPane">
    <top>
@@ -29,23 +28,16 @@
             <SeparatorMenuItem/>
             <MenuItem text="Find" fx:id="findMenu" onAction="#findAction"/>
             <MenuItem text="Replace" fx:id="replaceMenu" onAction="#replaceAction"/>
-            <MenuItem text="Go To" fx:id="goToMenu" onAction="#gotoAction"/> <!-- This menu is enabled only when word wrap is disabled-->
             <SeparatorMenuItem/>
             <MenuItem text="Select All" fx:id="selectAllMenu" onAction="#selectAllAction"/>
          </Menu>
 
          <Menu text="Format">
             <MenuItem text="Word Wrap" fx:id="wordWrapMenu" onAction="#wordWrapAction"/>
-            <MenuItem text="Font" fx:id="fontMenu" onAction="#fontAction"/>
-         </Menu>
-
-         <Menu text="View">
-            <MenuItem text="Status Bar" fx:id="statusBarMenu" onAction="#statusBarAction"/>
          </Menu>
 
          <Menu text="Help" >
-            <MenuItem text="About" fx:id="aboutMenu"/>
-            <MenuItem text="What is it?" fx:id="whatIsItMenu" />
+            <MenuItem text="About" fx:id="aboutMenu" onAction="#aboutAction"/>
          </Menu>
 
       </MenuBar>
@@ -56,7 +48,7 @@
 
 
    <bottom>
-      <Label fx:id="statusLabel" visible="false"/>
+      <Label fx:id="statusLabel"/>
    </bottom>
 
 </BorderPane>

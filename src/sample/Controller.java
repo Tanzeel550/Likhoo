@@ -15,31 +15,22 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 
-
-// Add Status bar
-// Goto Function
-// ask dialog before closing
-// Help menu
-
 public class Controller {
     @FXML
-    public MenuItem saveMenu, saveAsMenu, openMenu, newMenu, quitMenu, undoMenu, redoMenu, cutMenu, pasteMenu, copyMenu, deleteMenu, findMenu, replaceMenu, goToMenu,
+    private MenuItem saveMenu, saveAsMenu, openMenu, newMenu, quitMenu, undoMenu, redoMenu, cutMenu, pasteMenu, copyMenu, deleteMenu, findMenu, replaceMenu,
             selectAllMenu, wordWrapMenu, fontMenu, statusBarMenu, aboutMenu, whatIsItMenu;
 
     @FXML
-    public BorderPane borderPane;
+    private BorderPane borderPane;
     @FXML
-    public TextArea textarea;
-    public Label statusLabel;
+    private TextArea textarea;
+    @FXML
+    private Label statusLabel;
 
     private File file = null;
     private String fileData = null;
 
     public static boolean isSaved = true;
-
-    private boolean showStatus = false;
-
-    int row=0, col = 0;
 
     public void initialize() {
 //        Adding the shortucts
@@ -55,10 +46,10 @@ public class Controller {
         selectAllMenu.setAccelerator(new KeyCodeCombination(KeyCode.A, KeyCombination.CONTROL_DOWN));
         findMenu.setAccelerator(new KeyCodeCombination(KeyCode.F, KeyCombination.CONTROL_DOWN));
         replaceMenu.setAccelerator(new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_DOWN));
-        goToMenu.setAccelerator(new KeyCodeCombination(KeyCode.G, KeyCombination.CONTROL_DOWN));
+//        goToMenu.setAccelerator(new KeyCodeCombination(KeyCode.G, KeyCombination.CONTROL_DOWN));
         pasteMenu.setAccelerator(new KeyCodeCombination(KeyCode.P, KeyCombination.CONTROL_DOWN));
         deleteMenu.setAccelerator(new KeyCodeCombination(KeyCode.D, KeyCombination.CONTROL_DOWN));
-
+        wordWrapMenu.setAccelerator(new KeyCodeCombination(KeyCode.W, KeyCombination.CONTROL_DOWN));
 
 
 
@@ -78,6 +69,8 @@ public class Controller {
         textarea.setText(fileData);
 
         isSaved = true;
+
+        statusLabel.setText("You are editing " + file.getName());
     }
 
     public void saveMenuAction() {
@@ -113,17 +106,17 @@ public class Controller {
 
     public void textAreaTextChanged() {
         isSaved = false;
-        if (showStatus) {
-
-        }
+        statusLabel.setText("Changes were not saved.");
     }
 
     public void undoAction() {
         textarea.undo();
+        statusLabel.setText("Un-doed");
     }
 
     public void redoAction() {
         textarea.redo();
+        statusLabel.setText("Re-doed");
     }
 
     public void cutAction() {
@@ -152,7 +145,6 @@ public class Controller {
 
         findDialog.getDialogPane().setContent(fxmlLoader.load());
 
-
         findDialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
         findDialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
 
@@ -168,16 +160,37 @@ public class Controller {
 
             String text = textarea.getText();
 
-            for (int i = 0; i < textAreaLength-userFindLength; i++) {
-                if (findDialogController.matchCase()) {
-                    final String substring = text.substring(i, i + userFindLength);
+            boolean found = false;
 
-                    if (substring.equalsIgnoreCase(userFind))
+            for (int i = 0; i < textAreaLength-userFindLength; i++) {
+
+                final String substring = text.substring(i, i + userFindLength);
+
+                if (findDialogController.matchCase()) {
+                    if (substring.equals(userFind)) {
                         textarea.selectRange(i, i + userFindLength);
-                    else if (substring.equals(userFind))
+                        found = true;
+                    }
+                }
+                else {
+                    if (substring.equalsIgnoreCase(userFind)) {
                         textarea.selectRange(i, i + userFindLength);
+                        found = true;
+                    }
                 }
             }
+
+            if (!found) {
+                Alert alert = new Alert(Alert.AlertType.NONE);
+                alert.setTitle("Not found");
+                alert.setHeaderText("The text you searched was not found");
+                alert.getButtonTypes().add(ButtonType.OK);
+                alert.showAndWait();
+                statusLabel.setText(userFind + " not Found");
+            }
+            else
+                statusLabel.setText(userFind + " Found");
+
         }
 
     }
@@ -202,13 +215,21 @@ public class Controller {
             ReplaceDialogController replaceDialogController = fxmlLoader.getController();
             ReplaceUserChoice userChoice = replaceDialogController.processUserInput();
 
-            textarea.setText(textarea.getText().replaceAll(userChoice.getFind(), userChoice.getReplace()));
+            if (!userChoice.getReplace().equals("")) {
 
+                String text = textarea.getText();
+
+                textarea.setText(text.replaceAll(userChoice.getFind(), userChoice.getReplace()));
+
+                if (textarea.toString().equals(text))
+                    statusLabel.setText(userChoice.getFind() + " not Found!");
+                else
+                    statusLabel.setText(userChoice.getFind() + " was replaced with " + userChoice.getReplace());
+            }
+            else
+                statusLabel.setText("Nothing to replace");
         }
 
-    }
-
-    public void gotoAction() {
     }
 
     public void selectAllAction() {
@@ -216,21 +237,25 @@ public class Controller {
     }
 
     public void wordWrapAction() {
-        textarea.setWrapText(!textarea.isWrapText());
-    }
-
-    public void fontAction() {
-    }
-
-    public void statusBarAction() {
-
-
-        if (statusLabel.isVisible()){
-            statusLabel.setVisible(true);
-            showStatus = true;
+        if (textarea.isWrapText()){
+            textarea.setWrapText(false);
+            statusLabel.setText("Word Wrap was disabled.");
         }else {
-            statusLabel.setVisible(false);
+            textarea.setWrapText(true);
+            statusLabel.setText("Word Wrap was enabled");
         }
+    }
+
+    public void aboutAction() throws IOException {
+        Dialog<Button> dialog = new Dialog<>();
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("about.fxml"));
+
+        dialog.getDialogPane().setContent(fxmlLoader.load());
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+
+        dialog.showAndWait();
 
     }
 }

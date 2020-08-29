@@ -7,7 +7,7 @@ public class Model {
 
     private final static Model instance = new Model();
 
-    private Model(){};
+    private Model(){}
 
     public static Model getInstance() {
         return instance;
@@ -25,9 +25,9 @@ public class Model {
         StringBuilder fileData = new StringBuilder();
         String currLine;
 
-        while ((currLine = bufferedReader.readLine())!=null){
-            fileData.append(currLine + "\n");
-        }
+        while ((currLine = bufferedReader.readLine())!=null)
+            fileData.append(currLine).append("\n");
+
         return fileData.toString();
     }
 
