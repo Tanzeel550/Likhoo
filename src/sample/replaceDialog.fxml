@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<DialogPane prefHeight="100.0" prefWidth="275.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ReplaceDialogController"
+            style="-fx-background-color: white">
+
+    <content>
+        <FlowPane>
+            <GridPane>
+                <Label text="Find:    " GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <TextField fx:id="findText" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            </GridPane>
+
+            <GridPane>
+                <Label text="Replace: " GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <TextField fx:id="replaceText" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            </GridPane>
+        </FlowPane>
+    </content>
+
+</DialogPane>
