@@ -86,6 +86,7 @@ public class Controller {
             System.out.println(e.getMessage());
         }
         isSaved = true;
+        statusLabel.setText("Changes were saved to " + file.getName());
     }
 
     public void saveAsMenuAction() {
@@ -98,6 +99,7 @@ public class Controller {
             System.out.println(e.getMessage());
         }
         isSaved = true;
+        statusLabel.setText("Changes were saved to " + newfile.getName());
     }
 
     public void exitMenuAction() {
