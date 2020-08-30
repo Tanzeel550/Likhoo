@@ -13,7 +13,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Likhoo");
-        primaryStage.getIcons().add(new Image("file:a.png"));
+        primaryStage.getIcons().add(new Image("file:155.1.jpg"));
         primaryStage.setScene(new Scene(root, 800, 575));
         primaryStage.show();
     }

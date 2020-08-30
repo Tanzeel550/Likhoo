@@ -3,7 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<DialogPane maxHeight="102.0" maxWidth="300.0" minHeight="80.0" minWidth="20.0" prefHeight="80.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FindDialogController">
+<DialogPane maxHeight="102.0" maxWidth="300.0" minHeight="80.0" minWidth="20.0" prefHeight="80.0"
+            prefWidth="300.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sample.FindDialogController"  style="-fx-background-color: white">
 
     <content>
         <FlowPane alignment="CENTER" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="10.0" prefHeight="200.0" prefWidth="200.0">

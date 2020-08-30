@@ -253,8 +253,8 @@ public class Controller {
         fxmlLoader.setLocation(getClass().getResource("about.fxml"));
 
         dialog.getDialogPane().setContent(fxmlLoader.load());
-        dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
 
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
         dialog.showAndWait();
 
     }
